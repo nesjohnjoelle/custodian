@@ -154,3 +154,38 @@ document.addEventListener('click', function (event) {
         window.livewire.emit('removeSuggestItem');
     }
 });
+
+function clickEllipsis(){
+    var an = $(".div100");
+    var sn = $(".div101");
+    $(".div100").toggle();
+    if (an.css("display") !== "none") {
+        // Set margin-top for elements with class "div101"
+        sn.css("margin-top", "31%");
+    } else {
+        // If "div100" is hidden, you may want to reset the margin-top
+        sn.css("margin-top", "75%");
+    }
+
+}
+
+$(document).ready(function() {
+    var sn = $(".div101");
+    // Hide the div when anything on the page is clicked
+    $(document).click(function(event) {
+        if (!$(event.target).is("#ellip")) {
+            $(".div100").hide();
+            sn.css("margin-top", "75%");
+        }
+    });
+
+});
+
+// function clickBody(){
+//     if (!$(event.target).is("#ellip")) {
+//         $("#myDiv").hide();
+//     }
+// }
+// $(document).click(function(event) {
+//
+// });
