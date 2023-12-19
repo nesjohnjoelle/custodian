@@ -32,7 +32,7 @@
                         Quantity
                     </th>
                     <th>
-                        Serial No.
+                       Inventory No.
                     </th>
                     <th>
                         Receiver
