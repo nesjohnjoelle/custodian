@@ -7,7 +7,7 @@
         <thead>
         <tr class="inv">
             <th>
-                Admin Acc. Name
+                Admin Name
             </th>
             <th>
                 Action Taken
@@ -20,7 +20,7 @@
         <tbody>
         @if(count($request_data) == 0)
             <tr style="text-align: center">
-                <td colspan="7"> No Inventory Posted</td>
+                <td colspan="7"> No Data Posted</td>
             </tr>
 
         @else

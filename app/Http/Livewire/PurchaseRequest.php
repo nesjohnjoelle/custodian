@@ -340,7 +340,7 @@ class PurchaseRequest extends Component
 
                 Log::create([
                     'name' => auth()->user()->username,
-                    'action' => 'Move to Inventory om Purchase Order'
+                    'action' => 'Move item to Inventory from Purchase Order'
                 ]);
             }
             catch (\Exception $e){
