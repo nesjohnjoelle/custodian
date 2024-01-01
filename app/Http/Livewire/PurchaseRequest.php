@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class PurchaseRequest extends Component
 {
-    public $supplier, $usr, $address, $clickUpdate = 1, $tin, $po_num, $mode, $total, $total_words, $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
+    public $purpose, $requested_by, $approved_by, $designator, $supplier, $usr, $address, $clickUpdate = 1, $tin, $po_num, $mode, $total, $total_words, $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
 
     public function render()
     {
@@ -88,6 +88,10 @@ class PurchaseRequest extends Component
                     'total_cost' => $this->total_cost,
                     'item_type' => $this->item_type,
                     'pr_num' => $this->prNum,
+                    'purpose' => $this->purpose,
+                    'requested_by' => $this->requested_by,
+                    'approved_by' => $this->approved_by,
+                    'designator' => $this->designator,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
