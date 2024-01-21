@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="insertModalLabel" style="margin-left: 35%;">Input Prepare Material</h5>
+                <h5 class="modal-title" id="insertModalLabel">Input Prepare Material</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" >
@@ -48,6 +48,10 @@
                             </ul>
                         </div>
                     @endif
+                        <div class="mb-3" style="width: 70%; margin-left: 15%;">
+                            <input type="text" class="form-control" placeholder="Position" wire:click="not_item_click" wire:model="position">
+                            @error('position') <span style="color: red">{{ $message }}</span> @enderror
+                        </div>
                     <div style="display: flex">
                         <div class="mb-2" style="width: 70%; margin-left: 15%;">
                             <input id="prepareInputItem" @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model="item_name" required>

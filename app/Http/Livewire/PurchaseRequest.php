@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class PurchaseRequest extends Component
 {
-    public $purpose, $requested_by, $approved_by, $designator, $supplier, $usr, $address, $clickUpdate = 1, $tin, $po_num, $mode, $total, $total_words, $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
+    public $chief, $place_delivery, $date_delivery, $delivery_term, $payment_term, $purpose, $supplier, $usr, $address, $clickUpdate = 1, $tin, $po_num, $mode, $total, $total_words, $item_name,$prNum, $order_data, $fa=0, $item_type="", $quantity, $pick=0, $basis=0, $result, $request_data, $unit, $unit_cost, $total_cost, $data_id, $base=0;
 
     public function render()
     {
@@ -89,9 +89,6 @@ class PurchaseRequest extends Component
                     'item_type' => $this->item_type,
                     'pr_num' => $this->prNum,
                     'purpose' => $this->purpose,
-                    'requested_by' => $this->requested_by,
-                    'approved_by' => $this->approved_by,
-                    'designator' => $this->designator,
                 ]);
                 $this->item_name = "";
                 $this->quantity = "";
@@ -165,6 +162,7 @@ class PurchaseRequest extends Component
         $this->total_cost = $sae->total_cost;
         $this->item_name = $sae->item_name;
         $this->item_type = $sae->item_type;
+        $this->purpose = $sae->purpose;
     }
 
     public function edit_submit(){
@@ -196,6 +194,7 @@ class PurchaseRequest extends Component
                 $this->total_cost = null;
                 $this->unit = null;
                 $this->item_type = "";
+                $this->purpose = "";
                 session()->flash('dataUpdated',"Successfully Updated");
                 Log::create([
                     'name' => $this->usr,
@@ -375,6 +374,11 @@ class PurchaseRequest extends Component
                 $this->mode = $datas->mode;
                 $this->total = $totalCost;
                 $this->total_words = $datas->total_words;
+                $this->chief = $datas->chief;
+                $this->place_delivery = $datas->place_delivery;
+                $this->date_delivery = $datas->date_delivery;
+                $this->delivery_term = $datas->delivery_term;
+                $this->payment_term = $datas->payment_term;
             }
         }
         else{
@@ -395,6 +399,11 @@ class PurchaseRequest extends Component
                 $datas->mode = $this->mode;
                 $datas->total = $this->total;
                 $datas->total_words = $this->total_words;
+                $datas->chief = $this->chief;
+                $datas->place_delivery = $this->place_delivery;
+                $datas->date_delivery = $this->date_delivery;
+                $datas->delivery_term = $this->delivery_term;
+                $datas->payment_term = $this->payment_term;
                 $datas->save();
             }
         }
@@ -407,6 +416,11 @@ class PurchaseRequest extends Component
                 'mode' => $this->mode,
                 'total' => $this->total,
                 'total_words' => $this->total_words,
+                'chief' => $this->chief,
+                'place_delivery' => $this->place_delivery,
+                'date_delivery' => $this->date_delivery,
+                'delivery_term' => $this->delivery_term,
+                'payment_term' => $this->payment_term,
             ]);
         }
         $this->clickUpdate = 1;
@@ -467,7 +481,7 @@ class PurchaseRequest extends Component
             $this->requested_by = "";
             $this->approved_by = "";
             $this->designator = "";
-            
+
             session()->flash('move',"Successfully Moved to Backup");
             Log::create([
                 'name' => auth()->user()->username,

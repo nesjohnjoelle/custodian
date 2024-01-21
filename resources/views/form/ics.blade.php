@@ -82,25 +82,26 @@
         </td>
     </tr>
 </table>
-<table style="width: 100%; border-collapse: collapse; border: 1px solid;">
+<table style="width: 100%; border-collapse: collapse; border: 1px solid; text-align: center;">
     <tr>
         <td rowspan="3" style="width: 50%; border: 1px solid;">
-            <p>Received from:<p/>
-            <p style="text-align: center"><b><u>MARIBETH B. LASTROLLO</u></b><br>Signature Over Printed Name</p><br>
-            <p style="text-align: center"><b><u>Teacher III/Supply Officer-Supply Office</u></b><br>Position/Office</p>
+            <p><b>Received from:</b><p/>
+            <p style="text-align: center"><b><u>{{strtoupper($desig->printedName)}}</u></b><br>Signature Over Printed Name</p><br>
+            <p style="text-align: center"><b><u>{{strtoupper($desig->position)}}</u></b><br>Position/Office</p>
         </td>
-        <td style="border: 1px solid;">
-            Received by: {{ucwords($receivedBy)}}
+        <td>
+            <p><b>Received by:</b></p> {{ucwords($receivedBy)}}
         </td>
     </tr>
     <tr>
         <td style="border: 1px solid;">
             Signature Over Printed Name
+            <p style="margin-top: 6%;">{{ucwords($position2)}}</p>
         </td>
     </tr>
     <tr>
-        <td style="border: 1px solid;">
-            Position/Office <br> Date:
+        <td style="border: 1px solid; padding-bottom: 55px;">
+            Position/Office
         </td>
     </tr>
 </table>

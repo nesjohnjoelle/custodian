@@ -15,7 +15,9 @@ class Prepare extends Model
         'receiver',
         'item_type',
         'serial',
-        'ics'
+        'ics',
+        'position',
+        'transaction_name'
     ];
 
     use HasFactory;

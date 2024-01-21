@@ -161,12 +161,41 @@ function clickEllipsis(){
     $(".div100").toggle();
     if (an.css("display") !== "none") {
         // Set margin-top for elements with class "div101"
-        sn.css("margin-top", "31%");
+        sn.css("margin-top", "19.5%");
     } else {
         // If "div100" is hidden, you may want to reset the margin-top
         sn.css("margin-top", "75%");
     }
 
+}
+
+function par(){
+   $('#ics').hide();
+   $('#parBtn').css("background-color", "#61676A");
+   $('#icsBtn').css("background-color", "#86969D");
+    $('#par').hide();
+   $("#spinner").show();
+    setTimeout(function() {
+        $("#spinner").hide();
+    }, 500);
+    setTimeout(function() {
+        $("#par").show();
+    }, 500);
+
+}
+
+function ics(){
+    $('#par').hide();
+    $('#ics').hide();
+    $('#parBtn').css("background-color", "#86969D");
+    $('#icsBtn').css("background-color", "#61676A");
+    $("#spinner").show();
+    setTimeout(function() {
+        $("#spinner").hide();
+    }, 500);
+    setTimeout(function() {
+        $("#ics").show();
+    },500);
 }
 
 $(document).ready(function() {
@@ -178,7 +207,6 @@ $(document).ready(function() {
             sn.css("margin-top", "75%");
         }
     });
-
 });
 
 // function clickBody(){
