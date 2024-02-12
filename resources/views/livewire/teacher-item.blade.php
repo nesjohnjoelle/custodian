@@ -1,4 +1,5 @@
 <div>
+
     @include('modal.add_teacher_item')
     <div style="margin-left: 1%; margin-top: 2%;">
         <p style="font-size: 18px;">{{ucwords($teacher_name)}}</p>
@@ -15,10 +16,7 @@
         </div>
     @endif
     <div style="display: flex;">
-        <div style="margin-left: 10%;">
-            <button class="btn btn-success" onclick="moveToInventory()">Move to Inventory</button>
-        </div>
-        <div style="margin-left: 44%;">
+        <div style=" margin-left: 10%;" id="plusIcon">
             <span data-bs-toggle="modal" data-bs-target="#addTeacherItem" wire:click="add_request_click" title="Add Item" class="bi bi-plus-circle-fill" style="font-size: 30px; color: rgb(165, 42, 42); cursor: pointer; ">+</span>
         </div>
         <div style="margin-left: 3%; margin-top: 1%;">
@@ -39,11 +37,16 @@
                 </ul>
             </div>
         </div>
+        @if(count($checkData) > 0)
+            <div style="width: 14%; margin-left: 3%;" id="returnId">
+                <button class="btn btn-warning text-white" style="width: 100%;" onclick="clickRtrn('{{$teacher_name}}')">Return</button>
+            </div>
+        @endif
     </div>
 
     <div style="display: flex; width: 100%;">
         <div style="width: 80%; margin-left: 10%;">
-            <table class="table table-hover" style="width: 100%; text-align: center">
+            <table id="tbTeach" class="table table-hover" style="width: 100%; text-align: center">
                 <thead>
                 <tr class="inv">
                     <th>
@@ -59,6 +62,15 @@
                         Inventory No.
                     </th>
                     <th>
+                        ICS No.
+                    </th>
+                    <th>
+                        PAR No.
+                    </th>
+                    <th>
+                        Property No.
+                    </th>
+                    <th colspan="2">
                         Date
                     </th>
                 </tr>
@@ -69,7 +81,7 @@
 
                         @elseif($data->item_type == "consumable")
                         @else
-                            <tr style="cursor: pointer">
+                            <tr style="cursor: pointer;"  onmouseover="teacherHover({{$data->id}})" onmouseout="teacherOut({{$data->id}})">
                                 <td>
                                     {{$data->item_name}}
                                 </td>
@@ -85,7 +97,31 @@
                                     {{$data->serial}}
                                 </td>
                                 <td>
+                                    {{$data->ics}}
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
                                     {{$data->created_at}}
+                                </td>
+
+                                <td>
+                                    @if($data->is_returned == 0)
+                                        <div class="form-check">
+                                            <input class="form-check-input" style="cursor: pointer;" type="checkbox" id="checkBox{{$data->id}}" onchange="teacherClick({{$data->id}})"  @if($data->item_id == '1') checked @endif>
+                                        </div>
+                                    @else
+                                        @foreach($invAll as $inv)
+                                            @if($data->serial == $inv->inventory_number)
+                                                <p style="color: red;">{{ucfirst($inv->item_status)}}</p>
+                                            @endif
+                                        @endforeach
+                                    @endif
+
                                 </td>
                             </tr>
                         @endif

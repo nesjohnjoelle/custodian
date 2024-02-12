@@ -98,12 +98,6 @@ function removeItemMoved(id,name){
     }
 }
 
-function moveToInventory(){
-    if (confirm('Are you sure to move all item to inventory?')){
-        window.livewire.emit('moves');
-    }
-}
-
 function clickMove(){
     if (confirm('Are you sure to move to purchase request?')){
         window.livewire.emit('movebToPr');
@@ -198,6 +192,35 @@ function ics(){
     },500);
 }
 
+function teacherHover(id){
+    var a = $('#checkBox'+id);
+    a.css("border", "solid black 1px");
+
+}
+
+function teacherOut(id){
+    var b = $('#checkBox'+id);
+    b.css("border", "");
+
+}
+
+function teacherClick(id){
+    var c = $('#checkBox'+id);
+    if (c.prop('checked')) {
+        window.livewire.emit('clickCheck',id);
+
+    } else {
+        window.livewire.emit('clickUncheck',id);
+    }
+}
+
+function clickRtrn(name){
+    if (confirm('Are you sure you want return items? If yes, click "OK"')){
+        window.livewire.emit('returnItem',name);
+    }
+}
+
+
 $(document).ready(function() {
     var sn = $(".div101");
     // Hide the div when anything on the page is clicked
@@ -207,8 +230,10 @@ $(document).ready(function() {
             sn.css("margin-top", "75%");
         }
     });
-});
 
+
+
+});
 // function clickBody(){
 //     if (!$(event.target).is("#ellip")) {
 //         $("#myDiv").hide();

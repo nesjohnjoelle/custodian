@@ -64,6 +64,7 @@
                         <div style="display: flex">
                             <div class="mb-2" style="width: 70%; margin-left: 15%;">
                                 <input id="prepareInputItem" @if($item_disable == 1) disabled @endif type="text" class="form-control" placeholder="Item Description" wire:click="click_input_item" wire:model="item_name" required>
+                                @if($mas == 1) <i style="color: green"> (Returned)</i> @endif
                             </div>
                             @if($basis == 0)
                                 <div style="margin-left: 2%; margin-top: 6px;">
@@ -78,10 +79,17 @@
                                     @php $h=0; @endphp
                                     @foreach($result as $data)
                                         @if($h < 6)
-                                            <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}})">
-                                                {{$data->item_name}}
-                                                <p style="margin-left: auto">qty : {{$data->quantity}}</p>
-                                            </li>
+                                            @if($data->item_status == null or $data->item_status == "")
+                                                <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}},'{{$data->item_status}}')">
+                                                    {{$data->item_name}}
+                                                    <p style="margin-left: auto">qty : {{$data->quantity}}</p>
+                                                </li>
+                                            @elseif($data->item_status == "returned")
+                                                <li class="list-group-item btn" style="display: flex; text-align: left; background-color: #E0FFFF" wire:click="click_item({{$data->id}},'{{$data->item_status}}')">
+                                                    {{$data->item_name}} ({{$data->item_status}})
+                                                    <p style="margin-left: auto">qty : {{$data->quantity}}</p>
+                                                </li>
+                                            @endif
                                         @endif
                                         @php $h++; @endphp
                                     @endforeach
